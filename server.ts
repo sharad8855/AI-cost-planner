@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
-import { AI_MODELS } from "./src/data/models";
+import { AI_MODELS } from "./src/data/models.js";
 import { AIModel } from "./src/types";
 
 // Load environment variables

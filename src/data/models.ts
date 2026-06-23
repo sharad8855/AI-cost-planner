@@ -1,4 +1,4 @@
-import { AIModel, UseCaseData } from '../types';
+import { AIModel, UseCaseData } from '../types.js';
 
 export const AI_MODELS: AIModel[] = [
   // --- OPENAI ---
