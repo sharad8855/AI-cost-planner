@@ -10,6 +10,11 @@ import { ProviderLogo } from './components/ProviderLogo';
 import { AI_MODELS } from './data/models';
 import { formatCurrency } from './utils';
 import { AIModel } from './types';
+import { About } from './components/About';
+import { Privacy } from './components/Privacy';
+import { Terms } from './components/Terms';
+import { Contact } from './components/Contact';
+import { Blog } from './components/Blog';
 import { 
   Calculator, 
   Wallet, 
@@ -600,6 +605,32 @@ export default function App() {
             </div>
           </div>
         )}
+
+        {/* VIEW 6: ABOUT PAGE */}
+        {currentView === 'about' && (
+          <About />
+        )}
+
+        {/* VIEW 7: PRIVACY POLICY PAGE */}
+        {currentView === 'privacy' && (
+          <Privacy />
+        )}
+
+        {/* VIEW 8: TERMS & CONDITIONS PAGE */}
+        {currentView === 'terms' && (
+          <Terms />
+        )}
+
+        {/* VIEW 9: CONTACT PAGE */}
+        {currentView === 'contact' && (
+          <Contact />
+        )}
+
+        {/* VIEW 10: BLOG SECTION */}
+        {currentView === 'blog' && (
+          <Blog />
+        )}
+
 
       </main>
 

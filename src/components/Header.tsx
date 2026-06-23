@@ -16,7 +16,8 @@ export function Header({ currentView, setView, isDarkMode, toggleDarkMode }: Hea
     { id: 'calculator', name: 'Calculator' },
     { id: 'budget', name: 'Budget Planner' },
     { id: 'comparison', name: 'Model Comparison' },
-    { id: 'pricing', name: 'Pricing' }
+    { id: 'pricing', name: 'Pricing' },
+    { id: 'blog', name: 'Blog' }
   ];
 
   const handleNavClick = (viewId: string) => {
@@ -74,6 +75,19 @@ export function Header({ currentView, setView, isDarkMode, toggleDarkMode }: Hea
 
             {resourcesOpen && (
               <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-xl border border-slate-100 bg-white p-2 shadow-xl ring-1 ring-black/5 dark:border-slate-800 dark:bg-slate-800">
+                <button 
+                  onClick={() => { setView('about'); }} 
+                  className="w-full text-left block rounded-lg px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50 cursor-pointer"
+                >
+                  About Planner
+                </button>
+                <button 
+                  onClick={() => { setView('contact'); }} 
+                  className="w-full text-left block rounded-lg px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50 cursor-pointer"
+                >
+                  Contact Us
+                </button>
+                <div className="my-1 border-t border-slate-100 dark:border-slate-700" />
                 <a 
                   href="#how-it-works" 
                   onClick={() => { setView('home'); setTimeout(() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' }), 100); }} 
@@ -87,14 +101,6 @@ export function Header({ currentView, setView, isDarkMode, toggleDarkMode }: Hea
                   className="block rounded-lg px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"
                 >
                   Supported Models
-                </a>
-                <a 
-                  href="https://github.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="block rounded-lg px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-700/50"
-                >
-                  GitHub Repository
                 </a>
               </div>
             )}

@@ -59,10 +59,22 @@ export function Footer({ setView }: FooterProps) {
               Resources
             </h5>
             <ul className="space-y-2 text-xs font-semibold text-slate-600 dark:text-slate-350">
+              <li>
+                <button onClick={() => setView('about')} className="hover:text-indigo-600 cursor-pointer">
+                  About Planner
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setView('blog')} className="hover:text-indigo-600 cursor-pointer">
+                  Blog & Insights
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setView('contact')} className="hover:text-indigo-600 cursor-pointer">
+                  Contact Us
+                </button>
+              </li>
               <li><a href="#how-it-works" onClick={() => setView('home')} className="hover:text-indigo-600">How It Works</a></li>
-              <li><a href="#popular-models" onClick={() => setView('home')} className="hover:text-indigo-600">Pricing Data</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noopener" className="hover:text-indigo-600">Documentation</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noopener" className="hover:text-indigo-600">Contributing</a></li>
             </ul>
           </div>
 
@@ -99,8 +111,8 @@ export function Footer({ setView }: FooterProps) {
             Free • Open Source • Built for Developers • No tracking cookies
           </div>
           <div className="flex gap-4">
-            <a href="https://github.com" target="_blank" rel="noopener" className="hover:underline">Privacy Policy</a>
-            <a href="https://github.com" target="_blank" rel="noopener" className="hover:underline">Terms of Service</a>
+            <button onClick={() => setView('privacy')} className="hover:underline cursor-pointer">Privacy Policy</button>
+            <button onClick={() => setView('terms')} className="hover:underline cursor-pointer">Terms of Service</button>
           </div>
         </div>
 
