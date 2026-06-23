@@ -82,7 +82,7 @@ async function performOpenRouterSync(force = false) {
       "Content-Type": "application/json",
     };
 
-    if (apiKey) {
+    if (apiKey && apiKey.trim().startsWith("sk-or-")) {
       headers["Authorization"] = `Bearer ${apiKey.trim()}`;
     }
 
@@ -316,7 +316,8 @@ async function startServer() {
 
   app.listen(PORT, "0.0.0.0", () => {
     console.log(`[Server] Running on http://localhost:${PORT}`);
-    console.log(`[Server] OpenRouter Key Loaded: ${process.env.OPENROUTER_API_KEY ? "Yes (Matches sk-or-...)" : "No"}`);
+    const hasKey = !!(process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY.trim().startsWith("sk-or-"));
+    console.log(`[Server] OpenRouter Key Loaded: ${hasKey ? "Yes (Matches sk-or-...)" : "No"}`);
   });
 }
 
