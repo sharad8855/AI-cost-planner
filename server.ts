@@ -9,7 +9,7 @@ import { AIModel } from "./src/types";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 app.use(express.json());
 
@@ -314,11 +314,15 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`[Server] Running on http://localhost:${PORT}`);
-    const hasKey = !!(process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY.trim().startsWith("sk-or-"));
-    console.log(`[Server] OpenRouter Key Loaded: ${hasKey ? "Yes (Matches sk-or-...)" : "No"}`);
-  });
+  if (!process.env.VERCEL) {
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`[Server] Running on http://localhost:${PORT}`);
+      const hasKey = !!(process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY.trim().startsWith("sk-or-"));
+      console.log(`[Server] OpenRouter Key Loaded: ${hasKey ? "Yes (Matches sk-or-...)" : "No"}`);
+    });
+  }
 }
 
 startServer();
+
+export default app;
