@@ -253,16 +253,32 @@ async function performOpenRouterSync(force = false) {
 }
 
 // Initial Sync trigger (Bootstrapping caching, satisfying one-time load request)
-performOpenRouterSync(false).catch(console.error);
+if (!process.env.VERCEL) {
+  performOpenRouterSync(false).catch(console.error);
+}
 
 // API endpoint to serve model prices
 app.get("/api/models", async (req, res) => {
   const force = req.query.force === "true";
+  
   if (force) {
     await performOpenRouterSync(true);
+  } else if (lastSyncTime === 0) {
+    // Cold start or first request on Vercel: await the initial sync
+    await performOpenRouterSync(false);
   } else {
-    // Background sync check if cache stale or has empty initialization
-    performOpenRouterSync(false).catch(console.error);
+    // If cache is stale (> 1 hour), sync again
+    const cacheDurationMs = 60 * 60 * 1000;
+    const isStale = Date.now() - lastSyncTime > cacheDurationMs;
+    if (isStale) {
+      if (process.env.VERCEL) {
+        // Await on Vercel because background tasks are frozen
+        await performOpenRouterSync(false);
+      } else {
+        // Run in background for serverful environments
+        performOpenRouterSync(false).catch(console.error);
+      }
+    }
   }
 
   res.json({
