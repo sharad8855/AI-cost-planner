@@ -18,7 +18,7 @@ export function PopularModels({ onSelectModel, isDarkMode, models }: PopularMode
     m.id === 'gpt-4o' || 
     m.id === 'gemini-2.0-flash' || 
     m.id === 'claude-3-5-sonnet' || 
-    m.id === 'deepseek-reasoner' || 
+    m.id === 'deepseek-r1' || 
     m.id === 'o3-mini'
   );
 
